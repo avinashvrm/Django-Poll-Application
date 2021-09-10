@@ -1,5 +1,6 @@
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -14,7 +15,7 @@ SECRET_KEY = 'x*za6xf&_80ofdpae!yzq61g9ffikkx9$*iygbl$j7rr4wlf8t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-poll-application1.herokuapp.com','localhost']
 
 
 # Application definition
@@ -64,12 +65,33 @@ WSGI_APPLICATION = 'pollme.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': 'dffropop9uhpk3',
+
+        'USER': 'bsvxuapexsygre',
+
+        'PASSWORD': '0b5a5510a8e832456a2257f6c6b17cb142fce07af2376a0e4855b634eb114d7c',
+
+        'HOST': 'ec2-184-73-198-174.compute-1.amazonaws.com',
+
+        'PORT': '5432',
+
     }
+
 }
+
 
 
 # Password validation
@@ -107,8 +129,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
+django_heroku.settings(locals())
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
